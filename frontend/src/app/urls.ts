@@ -1,4 +1,5 @@
 const parentsUrls = {
+  dashboard: '/',
   login: '/login',
   register: '/register',
 };

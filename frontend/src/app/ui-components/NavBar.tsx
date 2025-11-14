@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, FunctionComponent } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth';
 import parentsUrls from '../urls';
 
@@ -31,14 +31,19 @@ const NavBar: FunctionComponent = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate(parentsUrls.dashboard);
   };
 
   return (
     <AppBar position="sticky" color="primary">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Talent Pool
+          <Link
+            to={parentsUrls.dashboard}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            Talent Pool
+          </Link>
         </Typography>
 
         {/* Desktop */}
