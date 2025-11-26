@@ -34,7 +34,7 @@ const Login: FunctionComponent = () => {
           setStatus(undefined);
           const success = await login(values.username, values.password);
           setSubmitting(false);
-          if (success) navigate('/');
+          if (success) navigate(parentsUrls.dashboard);
           else setStatus('Invalid credentials');
         }}
       >
