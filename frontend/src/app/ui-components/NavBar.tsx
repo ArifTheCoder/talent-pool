@@ -14,7 +14,7 @@ import { Link, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth';
 import parentsUrls from '../urls';
 
-const pages = [{ label: 'About', href: '#about' }];
+const pages = [{ label: 'Create Profile', href: parentsUrls.createProfile }];
 
 const NavBar: FunctionComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -54,16 +54,6 @@ const NavBar: FunctionComponent = () => {
             alignItems: 'center',
           }}
         >
-          {pages.map((p) => (
-            <Button
-              key={p.label}
-              color="inherit"
-              component={RouterLink}
-              to={p.href}
-            >
-              {p.label}
-            </Button>
-          ))}
           {!isAuthenticated ? (
             <>
               <Button
@@ -83,9 +73,16 @@ const NavBar: FunctionComponent = () => {
             </>
           ) : (
             <>
-              <Typography variant="body2" sx={{ mr: 1 }}>
-                Hi, {username}
-              </Typography>
+              {pages.map((p) => (
+                <Button
+                  key={p.label}
+                  color="inherit"
+                  component={RouterLink}
+                  to={p.href}
+                >
+                  {p.label}
+                </Button>
+              ))}
               <Button color="inherit" onClick={handleLogout}>
                 Logout
               </Button>
@@ -105,16 +102,6 @@ const NavBar: FunctionComponent = () => {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            {pages.map((p) => (
-              <MenuItem
-                key={p.label}
-                onClick={handleCloseMenu}
-                component={RouterLink}
-                to={p.href}
-              >
-                {p.label}
-              </MenuItem>
-            ))}
             {!isAuthenticated ? (
               <>
                 <MenuItem
@@ -133,14 +120,26 @@ const NavBar: FunctionComponent = () => {
                 </MenuItem>
               </>
             ) : (
-              <MenuItem
-                onClick={() => {
-                  handleCloseMenu();
-                  handleLogout();
-                }}
-              >
-                Logout
-              </MenuItem>
+              <>
+                {pages.map((p) => (
+                  <MenuItem
+                    key={p.label}
+                    onClick={handleCloseMenu}
+                    component={RouterLink}
+                    to={p.href}
+                  >
+                    {p.label}
+                  </MenuItem>
+                ))}
+                <MenuItem
+                  onClick={() => {
+                    handleCloseMenu();
+                    handleLogout();
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </>
             )}
           </Menu>
         </Box>
