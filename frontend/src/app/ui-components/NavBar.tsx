@@ -14,7 +14,7 @@ import { Link, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth';
 import parentsUrls from '../urls';
 
-const pages = [{ label: 'Create Profile', href: parentsUrls.createProfile }];
+const pages = [{ label: 'Profile', href: parentsUrls.createProfile }];
 
 const NavBar: FunctionComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

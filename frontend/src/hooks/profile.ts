@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getProfiles, Profile } from '../models/profile';
+import { getProfile, getProfiles, Profile } from '../models/profile';
 
 export const useProfiles = (): [Profile[], string | undefined] => {
   const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -12,4 +12,17 @@ export const useProfiles = (): [Profile[], string | undefined] => {
   }, []);
 
   return [profiles, error];
+};
+
+export const useProfile = (): [Profile, string | undefined] => {
+  const [profile, setProfile] = useState<Profile | null | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    getProfile()
+      .then(setProfile)
+      .catch(() => setError('Failed to load profile'));
+  }, []);
+
+  return [profile, error];
 };

@@ -6,6 +6,7 @@ import { Register } from './registration';
 import { FunctionComponent } from 'react';
 import parentsUrls from './urls';
 import { Dashboard } from './dashboard';
+import { CreateProfile } from './profile';
 
 const App: FunctionComponent = () => {
   return (
@@ -15,6 +16,7 @@ const App: FunctionComponent = () => {
         <Route path={parentsUrls.dashboard} element={<Dashboard />} />
         <Route path={parentsUrls.login} element={<Login />} />
         <Route path={parentsUrls.register} element={<Register />} />
+        <Route path={parentsUrls.createProfile} element={<CreateProfile />} />
       </Routes>
     </Box>
   );
